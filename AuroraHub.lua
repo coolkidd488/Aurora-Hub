@@ -146,13 +146,21 @@ workspace.DescendantAdded:Connect(setupMachine)
 -- ============================================================
 local tESP={}
 
--- Lista predefinida de todos os monstros conhecidos do Dandy's World
+-- Lista completa de monstros
 local ALL_MONSTERS = {
-    "ShrimpoMonster","ToodlesMonster","YattaMonster","FinnMonster","NapkinMonster",
-    "FlipMonster","RodgerMonster","PebbleMonster","GoofyMonster","ShellyMonster",
-    "AstroMonster","SproutMonster","BoxtenMonster","PopcornMonster","CosmoMonster",
-    "VinylMonster","GlitchMonster","DandyMonster","TwistMonster",
+    "ShrimpoMonster", "ToodlesMonster", "YattaMonster", "FinnMonster", "PebbleMonster",
+    "RodgerMonster", "GoobMonster", "ShellyMonster", "BoxtenMonster", "CosmoMonster",
+    "GingerMonster", "TeaganMonster", "LooeyMonster", "SproutMonster", "AstroMonster",
+    "BrightneyMonster", "ConnieMonster", "FlutterMonster", "PoppyMonster", "RudieMonster",
+    "ScrapsMonster", "TishaMonster", "VeeMonster", "BobetteMonster", "JesterMonster",
+    "CoalMonster", "RazzleDazzleMonster", "DandyMonster", "GlitchMonster"
 }
+
+-- Continua detectando monstros novos automaticamente
+local function onMon(obj) if obj.Name:match("Monster$") and obj:IsA("Model") then addMonRow(obj.Name) end end
+local crM=workspace:FindFirstChild("CurrentRoom")
+if crM then for _,d in ipairs(crM:GetDescendants()) do onMon(d) end crM.DescendantAdded:Connect(onMon) end
+workspace.ChildAdded:Connect(function(c) if c.Name=="CurrentRoom" then c.DescendantAdded:Connect(onMon) end end)
 
 local function getMonCfg(n)
     if not State.monsters[n] then State.monsters[n]={enabled=true,colors={{R=255,G=50,B=50}}} end
