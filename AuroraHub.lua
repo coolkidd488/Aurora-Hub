@@ -1,6 +1,6 @@
---[[  AURORA HUB v1.0.0  ]]
+--[[  AURORA HUB v0.1.5  ]]
 
-local VERSION = "1.0.0"
+local VERSION = "0.1.5"
 local TweenService = game:GetService("TweenService")
 local UIS          = game:GetService("UserInputService")
 local LP           = game:GetService("Players").LocalPlayer
