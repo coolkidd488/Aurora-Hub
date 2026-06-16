@@ -1,4 +1,4 @@
---[[  AURORA HUB v0.2.9.2 fix  ]]
+--[[  AURORA HUB v0.2.9  ]]
 
 local VERSION = "0.2.9.2 fix"
 local TweenService = game:GetService("TweenService")
